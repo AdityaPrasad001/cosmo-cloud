@@ -1,23 +1,21 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react";
+import "./App.css";
+import FieldList from "./components/FieldList";
+import { initialField } from "./data/folderData";
 
 function App() {
+  const [fields, setFields] = useState([initialField]);
+
+  const handleSave = () => {
+    console.log(fields);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="data-form">
+      <FieldList fields={fields} onChange={setFields} onDelete={setFields} />
+      <button className="save-data" onClick={handleSave}>
+        Save
+      </button>
     </div>
   );
 }
